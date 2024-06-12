@@ -3,7 +3,7 @@ import subprocess
 import json
 
 # Constants
-BASE_PATH = "~/sjm/Co-LLM-Agents/envs/tdw_mat"
+BASE_PATH = "CHAIC"
 DATA_PATH = os.path.join(BASE_PATH, "dataset/obstacles_debug")
 TEMP_PATH = os.path.join(BASE_PATH, "debug")
 

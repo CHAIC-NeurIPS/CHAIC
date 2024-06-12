@@ -40,7 +40,7 @@ def create_video(video_folder, out_file):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("--dir", default='/home/winnie/sjm/Co-LLM-Agents/envs/tdw_mat/single_h_aaa_results/1001/0/Images/0', type=str)
+    parser.add_argument("--dir", default='Images', type=str)
     parser.add_argument("--output", default='demo.mp4', type=str)
     args = parser.parse_args()
 

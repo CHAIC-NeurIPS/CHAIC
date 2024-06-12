@@ -66,6 +66,7 @@ class TruckOccupancyMap(AddOn):
         return []
     
     def on_send(self, resp: List[bytes]) -> None:
+        self.grid = np.zeros((self.x_num, self.z_num), dtype=int)
         ht = np.zeros(self.grid.shape, dtype = np.float32)
         for i in range(len(resp) - 1):
             r_id = OutputData.get_data_type_id(resp[i])
@@ -102,7 +103,6 @@ class TruckOccupancyMap(AddOn):
         return [int((position[0] - self.x_min + 0.01) / self.grid_size), int((position[1] - self.z_min + 0.01) / self.grid_size)]
 
     def generate(self):
-        self.grid = np.zeros((self.x_num, self.z_num), dtype=int)
         for i in range(self.x_num):
             for j in range(self.z_num):
                 # print(self.grid_to_real([i, j]))

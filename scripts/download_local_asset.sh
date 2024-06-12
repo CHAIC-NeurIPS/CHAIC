@@ -1,2 +1,2 @@
-gdown https://drive.google.com/uc?id=1eH1VM_hLU80fk9nuj3LVF-jIzS_Ka3cq
+gdown https://drive.google.com/uc?id=1mhCw0Aq00FHmIa6qsjqYZR3emR3f8XZu
 unzip local_asset.zip
