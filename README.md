@@ -1,7 +1,7 @@
 # Constrained Human-AI Cooperation (CHAIC): An Inclusive Embodied Social Intelligence Challenge
 
 ## ✨ Introduction
-This is the anomyous raw code for CHAIC.
+This is the anomyous raw code for the NeurIPS Dataset Track submission CHAIC.
 [[Project Page](https://chaic-neurips.github.io/CHAIC/ )]
 
 > We introduce the Constrained Human-AI Cooperation (CHAIC), an inclusive embodied social intelligence challenge for testing social perception and cooperation in embodied agents. In CHAIC, the goal is for an embodied agent equipped with egocentric observations to aid a human possibly operating under physical constraints, e.g. unable to reach high places or confined to a wheelchair, to perform common household or outdoor tasks as efficiently as possible. To do this, a successful helper must (1). infer the human's intents and constraints by following the human and observing their behaviors (social perception), and (2). make a cooperative plan tailored to the human user to solve the task as fast as possible together as a team (cooperative planning). 
@@ -87,9 +87,3 @@ By adding ``--gt_mask`` or ``--gt_behavior`` in the scripts, the environment wil
 
 Agents may take different number of frames to finish (or fail) one action, and one env step is finished until any agent's action is not under the ongoing status, and the current obs is returned to all agents. Then, 
 all agents are asked for a new action, and any agent having ongoing action will directly switch to the new action if its action changed. 
-
-### Gym Scenes
-
-The dataset is modular in its design, consisting of several physical floor plan geometries with a wall and floor texture 
-variations (e.g. parquet flooring, ceramic tile, stucco, carpet etc.) and various furniture and prop layouts (tables, 
-chairs, cabinets etc.), for a total of 6 separate environments. Every scene has 6 to 8 rooms, 10 objects, and 4 containers.
