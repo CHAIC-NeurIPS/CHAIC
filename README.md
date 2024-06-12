@@ -1,24 +1,18 @@
-# TDW Multi-Agent Transport
+# Constrained Human-AI Cooperation (CHAIC): An Inclusive Embodied Social Intelligence Challenge
 
-## Codebase
+## ✨ Introduction
+This is the anomyous raw code for CHAIC.
+[[Project Page](https://chaic-neurips.github.io/CHAIC/ )]
 
-```
-|__ tdw-gym/ 					main code
-|       |__ challenge.py         main evaluation code
-|       |__ tdw_gym.py           main env code
-|       |__ h_agent.py           HP Agent
-|       |__ lm_agent.py          Cooperative LLM Agent
-|
-|__ scenes/ 			code for generating dataset
-|
-|__ dataset/ 					dataset configuration & dataset storage
-|
-|__ transport_challenge_multi_agent/ low level controller
-|
-|__ scripts/ 					scripts for running experiments
-```
+> We introduce the Constrained Human-AI Cooperation (CHAIC), an inclusive embodied social intelligence challenge for testing social perception and cooperation in embodied agents. In CHAIC, the goal is for an embodied agent equipped with egocentric observations to aid a human possibly operating under physical constraints, e.g. unable to reach high places or confined to a wheelchair, to perform common household or outdoor tasks as efficiently as possible. To do this, a successful helper must (1). infer the human's intents and constraints by following the human and observing their behaviors (social perception), and (2). make a cooperative plan tailored to the human user to solve the task as fast as possible together as a team (cooperative planning). 
+To benchmark this challenge, we created 4 new agents with real physical constraints, and 8 long-horizon tasks featuring both indoor and outdoor scenes with various constraints and emergency events along with potential risks. We benchmark both planning and learning baselines on the challenge and introduce a new method leveraging Large Language Models and behavior modeling. Empirical evaluation demonstrates the ability of our benchmark to enable systematic evaluation of important elements of machine social intelligence.
 
-## Setup
+<div>
+<center>
+<img src="docs/figure/teaser_v4.png">
+</div>
+
+## 🛠️ Setup
 
 **Step 1:** Run the following commands step by step to setup the environments:
 
@@ -38,7 +32,7 @@ After that, you can run the demo scene to verify your setup:
 python demo/demo_scene.py
 ```
 
-**Step 2:** Install and download perception models:
+**Step 2:** Install and download pre-trained perception models:
 
 ```bash
 pip install -U openmim
@@ -57,85 +51,45 @@ python tdw-gym/behavior.py
 
 **Notice:** There maybe exists some internal bugs in the `mmaction` package, and you can refer to the [Github issue](https://github.com/open-mmlab/mmaction2/issues/2714) to fix it when you meet trouble.
 
-## Run Experiments
-
-We prepare the example scripts to run experiments with HP baseline and our Cooperative LLM Agent under the folder `scripts`. For example, to run experiments with two LLM Agents, run the following command:
-
-
+## 💾 Codebase Layout
+Some important folders and their corresponding functions are listed here.
 ```
-./scripts/test_LMs.sh
+|__ tdw-gym/                         Main code
+|
+|__ scenes/                          Code for dataset generation
+|
+|__ dataset/                         Dataset configuration and storage
+|
+|__ transport_challenge_multi_agent/ Low level controller
+|
+|__ scripts/                         Scripts for running experiments
+|
+|__ detection_pipeline/              Code for perception models
+|
+|__ LM_agent/                        LLM & VLM Prompt
 ```
 
-## More details on the environment
+## 💫 Run Experiments
 
-### Multi-agent Asynchronized Setting
+We prepare all the experiment scripts to run experiments under the folder `scripts`. For example, to run experiments with Random Helper in the highthing setting, you can use the following command:
 
-Agents may take different number of frames to finish (or fail) one action, one env step is finished until any agent's action is not ongoing, and the current obs is returned to all agents.
-All agents are asked for a new action, and agents having ongoing actions will directly switch to the new action if actions changed. 
+```bash
+bash scripts/random_helper/test_high_thing_random_helper.sh
+```
+
+By adding ``--gt_mask`` or ``--gt_behavior`` in the scripts, the environment will provide ground truth object segmentation masks or ground truth behaviors of the partner, respectively.
+
+**Notice:** If you want to test the LLM+BM helper or the VLM helper, you need to fill your ``AzureOpenAI`` setting or ``OPENAI_API_KEY`` at line 73-77 in ``LM_agent/LLM.py`` or line 74-78 in ``LM_agent/VLM.py``.
+
+## 🧾 Benchmark Overview
+
+### Multi-Agent Asynchronized Setting
+
+Agents may take different number of frames to finish (or fail) one action, and one env step is finished until any agent's action is not under the ongoing status, and the current obs is returned to all agents. Then, 
+all agents are asked for a new action, and any agent having ongoing action will directly switch to the new action if its action changed. 
 
 ### Gym Scenes
 
 The dataset is modular in its design, consisting of several physical floor plan geometries with a wall and floor texture 
 variations (e.g. parquet flooring, ceramic tile, stucco, carpet etc.) and various furniture and prop layouts (tables, 
 chairs, cabinets etc.), for a total of 6 separate environments. Every scene has 6 to 8 rooms, 10 objects, and 4 containers.
-
-### Gym Observations
-```
-"rgb": Box(0, 256, (3, 256, 256))
-"depth": Box(0, 256, (256, 256))
-"seg_mask": (0, 256, (256, 256, 3))
-"agent": Box(-30, 30, (6,)) # position
-"status": ActionStatus[ongoing, success,fail,...]
-"camera_matrix": Box(-30, 30, (4, 4)),
-"valid": bool[True / False] # Whether the last action is valid
-"held_objects": [{'id': id/id/None, 'type': 0/1/None, 'name': name/name/None',  contained': [None] * 3 / [..] / [None] * 3}, {'id': id/id/None, 'type': 0/1/None, 'name': name/name/None', 'contained': [None] * 3 / [..] / [None] * 3}],
-"oppo_held_objects": [{'id': id/id/None, 'type': 0/1/None, 'name': name/name/None', contained': [None] * 3 / [..] / [None] * 3}, {'id': id/id/None, 'type': 0/1/None, 'name': name/name/None', 'contained': [None] * 3 / [..] / [None] * 3}], # we can see it when opponent is visible
-"current_frames": int
-'visible_objects': [{'id': ..., 'type': ..., 'seg_color': ..., 'name': ...}]
-"containment": {"agent_id": {"visible": True / False, "contained": [id, ...]}}
-"messages": (Text(max_length=1000, charset=string.printable), Text(max_length=1000, charset=string.printable))
-```
-
-### Api the agent can access
-```
-belongs_to_which_room((x, y, z)) -> room_name: given a location, return the room name;
-center_of_room(room_name) -> [x, y, z]: given a room name, return the center of the room;
-check_pos_in_room(x, z) -> bool: given a location, return whether it is inside the floorplan.
-```
-
-### Gym resetting
-reset gym with {scene, layout, task}, and will return:
-```
-"goal_description": a dict {'target_name_i': num_i}
-"room_type": a list [room_name_0, ...]
-```
-
-### Gym Actions
-* move forward at 0.5
-```
-dict {"type": 0} 
-```
-* turn left 15 degrees
-```
-dict {"type": 1} 
-```
-* turn right 15 degrees
-```
-dict {"type": 2} 
-```
-* grasp the object with arm
-```
-dict {"type": 3, "object": object_id, "arm": "left" or "right"} 
-```
-* put the holding object into the holding container
-```
-dict {"type": 4} 
-```
-* drop objects
-```
-dict {"type": 5, "arm": "left" or "right"}
-```
-* send messages
-```
-dict {"type": 6, "message": Text}
-```
