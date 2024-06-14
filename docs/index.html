@@ -431,6 +431,26 @@ pre {
   }
 }
 
+.video-container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start; /* 确保视频和标题顶部对齐 */
+}
+.video-box-2 {
+        margin: 10px;
+        width: 45%;
+}
+.video-box-3 {
+        margin: 10px;
+        width: 30%;
+}
+video {
+        width: 100%;
+}
+.caption {
+        text-align: center; /* 将标题居中对齐 */
+        color: #333; /* 标题颜色 */
+}
 </style>
 
 <script type="text/javascript"></script>
@@ -502,7 +522,7 @@ pre {
         <h2 style="text-align: center;">Abstract</h2>
         <div class="flex-row" style="width: 75%; margin: 0 auto;">
             <p>
-                We introduce the Constrained Human-AI Cooperation (CHAIC), an inclusive embodied social intelligence challenge for testing social perception and cooperation in embodied agents. In CHAIC, the goal is for an embodied agent equipped with egocentric observations to aid a human possibly operating under physical constraints, e.g. unable to reach high places or confined to a wheelchair, to perform common household or outdoor tasks as efficiently as possible. To do this, a successful helper must 1) infer the human's intents and constraints by following the human and observing their behaviors (social perception), and 2) make a cooperative plan tailored to the human user to solve the task as fast as possible together as a team (cooperative planning). To benchmark this challenge, we created 4 new agents with real physical constraints, and 8 long-horizon tasks featuring both indoor and outdoor scenes with various constraints and emergency events along with potential risks. We benchmark both planning and learning baselines on the challenge and introduce a new method leveraging Large Language Models and behavior modeling. Empirical evaluation demonstrates the ability of our benchmark to enable systematic evaluation of important elements of machine social intelligence.
+                We introduce the Constrained Human-AI Cooperation (CHAIC), an inclusive embodied social intelligence challenge for testing social perception and cooperation in embodied agents. In CHAIC, the goal is for an embodied agent equipped with egocentric observations to aid a human possibly operating under physical constraints, e.g. unable to reach high places or confined to a wheelchair, to perform common household or outdoor tasks as efficiently as possible. To do this, a successful helper must <b>(1) infer the human's intents and constraints</b> by following the human and observing their behaviors (social perception), and <b>(2) make a cooperative plan tailored to the human user</b> to solve the task as fast as possible together as a team (cooperative planning). To benchmark this challenge, we created <b>4 new agents</b> with real physical constraints, and <b>8 long-horizon tasks</b> featuring both indoor and outdoor scenes with various constraints and emergency events along with potential risks. We benchmark both planning and learning baselines on the challenge and introduce a new method leveraging Large Language Models and behavior modeling. Empirical evaluation demonstrates the ability of our benchmark to enable systematic evaluation of important elements of machine social intelligence.
             </p>
         </div>
     </section>
@@ -521,7 +541,7 @@ pre {
                     <img width="95%" src="figure/task_overview_v6.png"> 
                 </a>
                 <p class="caption", style="text-align: center;">
-                    Figure 1. overview of CHAIC benchmark.
+                    Figure 1. Overview of CHAIC Benchmark.
                 </p>
             </figure>
         </center>
@@ -533,36 +553,101 @@ pre {
                 The Constrained Human-AI Cooperation (CHAIC) Challenge seeks to study how embodied agents perform on the social perception of human users with diverse physical constraints. we design and implement four new agents with real physical constraints, and eight tasks featuring both indoor and outdoor scenes including emergency events.
             </p>
             <p>
-                For each task, there is a <b>main agent</b> mimicking a human user with capability constraints trying to find and transport some target objects to a specific goal position, and a <b>helper agent</b> trying to infer the main agent's goal and capability constraints through active perception of the main agent's behaviors.
+                For each task, there is a <b>constrained agent</b> mimicking a human user with capability constraints trying to find and transport some target objects to a specific goal position, and a <b>helper agent</b> trying to infer the constrained agent's goal and capability constraints through active perception of the constrained agent's behaviors.
             </p>
             <p>
                 The four kinds of agents new are named child agent, wheelchair agent, bike agent, and frail agent with specific constraints, and their example video clips are shown here: 
             </p>
         </div>
+    <hr>
     </section>
-
-
-    <!--section id="Agent Action"/>
-    <center>
-        <figure>
-            <a>
-                <img width="95%" src="figure/TODO.png"> 
-            </a>
-            <p class="caption", style="text-align: center;">
-                Visualization of each Constrained Agent.
-            </p>
-        </figure>
-    </center>
-    </section> -->
-
-    <section id="Dataset Description"/>
+    <h3 style="text-align: center;">Wheelchair Agent</h3>
+    <p>
+        The wheelchair agent cannot go through obstacles, and the helper agent needs to remove the obstacles for the wheelchair agent to pass. Meanwhile, wheelchair agent may fail to reach objects which is too low or too high.
+    </p>
+</div>
+<div class="video-container">
+    <div class="video-box-3">
+        <video controls>
+            <source src="video/wheelchair_obstacle.mp4" type="video/mp4">
+        </video>
+        <p class="caption", style="text-align: center;">
+        Wait the helper removing the obstacle.
+        </p>
+    </div>
+    <div class="video-box-3">
+        <video controls>
+            <source src="video/wheelchair_pick_up_fail.mp4" type="video/mp4">
+        </video>
+        <p class="caption", style="text-align: center;">
+        Fail in pick-up.
+        </p>
+    </div>
+    <div class="video-box-3">
+        <video controls>
+            <source src="video/wheelchair_pick_up_success.mp4" type="video/mp4">
+        </video>
+        <p class="caption", style="text-align: center;">
+        Succeed in pick-up.
+        </p>
+    </div>
+</div>
+<div class="container">
+    <hr>
+    <h3 style="text-align: center;">Child Agent</h3>
+    <p>
+        The child agent has a limited height and may fail to reach high places. Meanwhile it may break fragile objects.
+    </p>
+</div>
+<div class="container">
+    <hr>
+    <h3 style="text-align: center;">Bike Agent</h3>
+    <p>
+        The bike agent is slow to pick up objects.
+    </p>
+</div>
+<div class="container">
+    <hr>
+    <h3 style="text-align: center;">Frail Agent</h3>
+    <p>
+        The bike agent may fail to pick up heavy objects, the heavier the object, the more likely it fails. The helper can pick up objects with the frail agent together.
+    </p>
+</div>
+<div class="video-container">
+    <div class="video-box-3">
+        <video controls>
+            <source src="video/video_pick_together.mp4" type="video/mp4">
+        </video>
+        <p class="caption", style="text-align: center;">
+        Two agents pick up together.
+        </p>
+    </div>
+    <div class="video-box-3">
+        <video controls>
+            <source src="video/video_liftup_failed.mp4" type="video/mp4">
+        </video>
+        <p class="caption", style="text-align: center;">
+        Fail in pick-up.
+        </p>
+    </div>
+    <div class="video-box-3">
+        <video controls>
+            <source src="video/video_liftup_success.mp4" type="video/mp4">
+        </video>
+        <p class="caption", style="text-align: center;">
+        Succeed in pick-up.
+        </p>
+    </div>
+</div>
+<!--div class="container">
+    <section id="Dataset Description">
     <hr>
         <div class="flex-row">
             <p>
                 The eight kinds of tasks contain both indoor and outdoor scenes, and the tasks are: Normal, Highthing, Highgoalplace, Highcontainer, Lowthing, Obstacle, Shopping, and Furniture, and their overview are shown here:
             </p>
         </div>
-    </section>
+    </section> -->
 
     <!--section id="Agent Action"/>
     <center>
@@ -579,6 +664,7 @@ pre {
     </section> -->
 
     <section id="Baseline Overview">
+        <hr>
         <h2 style="text-align: center;">Baseline Overview</h2>
         <center>
             <!-- <figure>
@@ -601,23 +687,8 @@ pre {
     <section id="Baseline Overview"/>
     <div class="flex-row">
         <p>
-        We test six types of helpers: <b>Random Helper</b>, <b>Rule-based Hierarchical Plan Helper (RHP)</b>, <b>LLM+BM Helper</b>, <b>VLM Helper</b>, <b>RL Helper</b> and <b>SmartHelp Helper</b>. Fig. 2 is an overview of our proposed LLM+BM helper agent, which achieves best scores in our benchmark. The agent contains <b>perception module</b>, <b>memory module</b>, <b>behavior modeling module</b>, <b>decision module</b>, and <b>execuation module</b>. Combining the wide knowledge from foundation models and precise perception from fine-tuned models, the LLM+BM helper agent can infer the main agent's goal and constraints more accurately and efficiently. Follows are exmaples of the helper agent's behaivor in the benchmark:
+        We test six types of helpers: <b>Random Helper</b>, <b>Rule-based Hierarchical Plan Helper (RHP)</b>, <b>LLM+BM Helper</b>, <b>VLM Helper</b>, <b>RL Helper</b> and <b>SmartHelp Helper</b>. Fig. 2 is an overview of our proposed LLM+BM helper agent, which achieves best scores in our benchmark. The agent contains <b>perception module</b>, <b>memory module</b>, <b>behavior modeling module</b>, <b>decision module</b>, and <b>execuation module</b>. Combining the wide knowledge from foundation models and precise perception from fine-tuned models, the LLM+BM helper agent can infer the constrained agent's goal and constraints more accurately and efficiently. <!--Follows are exmaples of the helper agent's behaivor in the benchmark: -->
     </section>
-
-    <!--section id="Examples"/>
-    <center>
-        <figure>
-            <a>
-                <img width="95%" src="figure/TODO.png"> 
-            </a>
-            <p class="caption", style="text-align: center;">
-                Examples of Our Agent.
-            </p>
-        </figure>
-    </center>
-    <hr>
-    </section> -->
-
 </div>
 </body>
 </html>
