@@ -556,7 +556,7 @@ video {
                 For each task, there is a <b>constrained agent</b> mimicking a human user with capability constraints trying to find and transport some target objects to a specific goal position, and a <b>helper agent</b> trying to infer the constrained agent's goal and capability constraints through active perception of the constrained agent's behaviors.
             </p>
             <p>
-                The four kinds of agents new are named child agent, wheelchair agent, bike agent, and frail agent with specific constraints, and their example video clips are shown here: 
+                The four kinds of agents new are named child agent, wheelchair agent, bicycle agent, and frail agent with specific constraints, and their example video clips are shown here: 
             </p>
         </div>
     <hr>
@@ -599,12 +599,64 @@ video {
         The child agent has a limited height and may fail to reach high places. Meanwhile it may break fragile objects.
     </p>
 </div>
+<div class="video-container">
+    <div class="video-box-3">
+        <video controls>
+            <source src="video/vase_girl_success.mp4" type="video/mp4">
+        </video>
+        <p class="caption", style="text-align: center;">
+        Succeed in pick-up.
+        </p>
+    </div>
+    <div class="video-box-3">
+        <video controls>
+            <source src="video/vase_girl_fail.mp4" type="video/mp4">
+        </video>
+        <p class="caption", style="text-align: center;">
+        Fail in pick-up.
+        </p>
+    </div>
+    <div class="video-box-3">
+        <video controls>
+            <source src="video/vase_girl.mp4" type="video/mp4">
+        </video>
+        <p class="caption", style="text-align: center;">
+        Break fragile objects.
+        </p>
+    </div>
+</div>
 <div class="container">
     <hr>
-    <h3 style="text-align: center;">Bike Agent</h3>
+    <h3 style="text-align: center;">bicycle Agent</h3>
     <p>
-        The bike agent is slow to pick up objects.
+        The bicycle agent is slow to move and do actions. Sometimes its child agent may run away and the helper needs to catch it.
     </p>
+</div>
+<div class="video-container">
+    <div class="video-box-3">
+        <video controls>
+            <source src="video/video_bicycle_walk_slow.mp4" type="video/mp4">
+        </video>
+        <p class="caption", style="text-align: center;">
+        The bicycle agent walks slowly than the helper.
+        </p>
+    </div>
+    <div class="video-box-3">
+        <video controls>
+            <source src="video/video_shop_drop.mp4" type="video/mp4">
+        </video>
+        <p class="caption", style="text-align: center;">
+        The bicycle agent has the basket on the bicycle as a container.
+        </p>
+    </div>
+    <div class="video-box-3">
+        <video controls>
+            <source src="video/video_shop_runaway.mp4" type="video/mp4">
+        </video>
+        <p class="caption", style="text-align: center;">
+        The helper help the bicycle agent to catch the child agent.
+        </p>
+    </div>
 </div>
 <div class="container">
     <hr>
@@ -624,7 +676,7 @@ video {
     </div>
     <div class="video-box-3">
         <video controls>
-            <source src="video/video_liftup_failed.mp4" type="video/mp4">
+            <source src="video/video_lift_failed_woman.mp4" type="video/mp4">
         </video>
         <p class="caption", style="text-align: center;">
         Fail in pick-up.
@@ -639,33 +691,36 @@ video {
         </p>
     </div>
 </div>
-<!--div class="container">
-    <section id="Dataset Description">
+<div class="container">
+    <section id="Task Description">
     <hr>
+        <h3 style="text-align: center;">Tasks</h3>
         <div class="flex-row">
             <p>
-                The eight kinds of tasks contain both indoor and outdoor scenes, and the tasks are: Normal, Highthing, Highgoalplace, Highcontainer, Lowthing, Obstacle, Shopping, and Furniture, and their overview are shown here:
+                The eight kinds of tasks contain both indoor and outdoor scenes, and the tasks are: Normal, Highthing, Highgoalplace, Highcontainer, Lowthing, Obstacle, Shopping, and Furniture, and here is their brief description:
             </p>
         </div>
-    </section> -->
+        <center>
+            <!-- <figure>
+                <video class="centered" width="80%" autoplay loop muted playsinline class="video-background " >
+                    <source src="materials/teaser.m4v" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </figure> -->
+            <figure>
+                <a>
+                    <img width="95%" src="figure/task_description.png"> 
+                </a>
+                <p class="caption", style="text-align: center;">
+                    Table 1. Overview of Tasks.
+                </p>
+            </figure>
+        </center>
+    </section> 
 
-    <!--section id="Agent Action"/>
-    <center>
-        <figure>
-            <a>
-                <img width="95%" src="figure/TODO.png"> 
-            </a>
-            <p class="caption", style="text-align: center;">
-                Visualization of each task.
-            </p>
-        </figure>
-    </center>
-    <hr>
-    </section> -->
-
-    <section id="Baseline Overview">
+    <section id="Baseline">
         <hr>
-        <h2 style="text-align: center;">Baseline Overview</h2>
+        <h2 style="text-align: center;">LLM+BM Baseline</h2>
         <center>
             <!-- <figure>
                 <video class="centered" width="80%" autoplay loop muted playsinline class="video-background " >
@@ -687,7 +742,23 @@ video {
     <section id="Baseline Overview"/>
     <div class="flex-row">
         <p>
-        We test six types of helpers: <b>Random Helper</b>, <b>Rule-based Hierarchical Plan Helper (RHP)</b>, <b>LLM+BM Helper</b>, <b>VLM Helper</b>, <b>RL Helper</b> and <b>SmartHelp Helper</b>. Figure 2 is an overview of our proposed LLM+BM helper agent, which achieves best scores in our benchmark. The agent contains <b>perception module</b>, <b>memory module</b>, <b>behavior modeling module</b>, <b>decision module</b>, and <b>execuation module</b>. Combining the wide knowledge from foundation models and precise perception from fine-tuned models, the LLM+BM helper agent can infer the constrained agent's goal and constraints more accurately and efficiently. <!--Follows are exmaples of the helper agent's behaivor in the benchmark: -->
+        We test six types of helpers: <b>Random Helper</b>, <b>Rule-based Hierarchical Plan Helper (RHP)</b>, <b>LLM+BM Helper</b>, <b>VLM Helper</b>, <b>RL Helper</b> and <b>SmartHelp Helper</b>. Figure 2 is an overview of our proposed LLM+BM helper agent, which achieves best scores in our benchmark. The agent contains <b>perception module</b>, <b>memory module</b>, <b>behavior modeling module</b>, <b>decision module</b>, and <b>execuation module</b>. Combining the wide knowledge from foundation models and precise perception from fine-tuned models, the LLM+BM helper agent can infer the constrained agent's goal and constraints more accurately and efficiently. Here is an exmaple of the LLM+BM helper agent's behaivor:
+        <center>
+            <!-- <figure>
+                <video class="centered" width="80%" autoplay loop muted playsinline class="video-background " >
+                    <source src="materials/teaser.m4v" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </figure> -->
+            <figure>
+                <a>
+                    <img width="95%" src="figure/LLM+BM_example.png"> 
+                </a>
+                <p class="caption", style="text-align: center;">
+                    Figure 2. LLM+BM helper agent's thought and behaivor.
+                </p>
+            </figure>
+        </center>
     </section>
 </div>
 </body>
