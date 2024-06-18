@@ -104,7 +104,7 @@ The table below is the quantitative results on CHAIC benchmark. We report the av
 <div class="center">
     <table>
         <tr>
-            <td colspan="1"> TR(EI)<span>&#8593;</span> </td>
+            <td colspan="1"> <b>TR(EI)<span>&#8593;</span></b> </td>
             <td colspan="6" style="text-align: center">Indoor</td>
             <td colspan="2" style="text-align: center">Outdoor</td>
         </tr>
@@ -210,7 +210,7 @@ The table below is the quantitative results on CHAIC benchmark. We report the av
     </table>
     <table>
         <tr>
-            <td colspan="1"> IA<span>&#8593;</span> </td>
+            <td colspan="1"> <b>IA<span>&#8593;</span></b> </td>
             <td colspan="6" style="text-align: center">Indoor</td>
             <td colspan="1" style="text-align: center">Outdoor</td>
         </tr>
@@ -277,7 +277,7 @@ The table below is the quantitative results on CHAIC benchmark. We report the av
     </table>
     <table>
         <tr>
-            <td colspan="1"> CR<span>&#8593;</span> </td>
+            <td colspan="1"> <b>CR<span>&#8593;</span></b> </td>
             <td colspan="6" style="text-align: center">Indoor</td>
             <td colspan="2" style="text-align: center">Outdoor</td>
         </tr>
@@ -350,7 +350,7 @@ The table below is the quantitative results on CHAIC benchmark. We report the av
     </table>
     <table>
         <tr>
-            <td colspan="1"> STD</td>
+            <td colspan="1"> <b>STD</b></td>
             <td colspan="6" style="text-align: center">Indoor</td>
             <td colspan="2" style="text-align: center">Outdoor</td>
         </tr>
@@ -434,7 +434,7 @@ The table below is the quantitative results on CHAIC benchmark. We report the av
     </table>
     <table>
         <tr>
-            <td colspan="1"> ER<span>&#8595;</span> </td>
+            <td colspan="1"> <b>ER<span>&#8595;</span></b> </td>
             <td colspan="1" style="text-align: center">Outdoor</td>
         </tr>
         <tr>
