@@ -97,6 +97,48 @@ Different types of agents have different capacity scopes, and agents with differ
 
 One goal of our benchmark is to mimic real life as similar as possible. Therefore, we only provide the raw RGBD images as the main observation (the benchmark also supports many other types of observation), making our benchmark challenging and having a wide range of application space.
 
+## 🤖 Creating a new agent
+
+First you should learn about the details of the observation. The environment returns each agent's observation every step, which is a dictionary that includes the following items:
+
+- **rgb**: RGB image of the current agent's view
+- **depth**: depth image of the current agent's view
+- **camera_matrix**: the camera matrix of current agent's ego camera
+- **held_objects**: all the objects that current agent is holding. It is a list of length 2 that contains the information of the object that is held in the agent's two hands. Each object's information contains its name, type and a unique id. If it's a container, it also includes the information of the objects in it.
+- **status**: the status of current action, which is a number from 0 to 2. 0 for 'ongoing', 1 for 'failure', 2 for 'success.
+- **current_frames**: the number of frames passed
+- **previous_action** & **previous_status**: all previous actions of the agent and their corresponding status
+  
+To create a new agent, you must first create a folder named 'agent' in the root directory of the repository, and create a python file in it to write your own agent. You need to implement the following two functions in the python file:
+
+```python
+def reset(obs, info):
+def act(obs):
+```
+
+The function **reset** is used for initializing the agent at the beginning of the episode. It receives two arguments, that 'obs' is the initial observation of the agent, and 'info' is the information of the task. 
+
+The function **act** is the core part of the agent. It determines the next action of the agent. It receives the current observation from the environment, and returns the action. Each action should be a dictionary and set its "type" key to an integer between 0 and 7, each refers to a certain type of action:
+
+- 0: move forward by 0.5 meters
+- 1: turn left by 15 degrees
+- 2: turn right by 15 degrees
+- 3: pick up an object, it should contain another key named 'object' whose value is the id of object to pick, together with a key named 'arm' representing which hand to pick. 0 for left hand, 1 for right hand.
+- 4: put the object in one hand to the container in other hand. 
+- 5: put the object on some surface, it should contain a key named 'object' whose value is the id of object to put on its surface.
+- 6: remove obstacle, it should contain another key named 'object' whose value is the id of obstacle to pick, together with a key named 'arm' representing which hand to pick.
+- 7: wait for several frames, it should contain a key named 'delay' indicating the number of frames to wait.
+
+To evaluate your agent on a certain task, you should create a script like the following.
+
+```bash
+bash scripts/plan_helper/test_{your_task}_plan_helper.sh
+```
+
+You should change the second items of the 'agents' argument, which represents the type of the helper, to the name of the python file of your implemented agent. Then you can just run the script and get the result. You can also change the 'output_dir' of the script to customize the position to save the result.
+
+
+
 ## 🏆 Results
 
 The table below is the quantitative results on CHAIC benchmark. We report the average Transport Rate (TR), Efficiency Improvement (EI), Goal Inference Accuracy (IA), Completion Ratio of Helper (CR) and Standard Error of Transport Rate (STD_TR) here. w/o means the main agent does the task solely without a helper. The Emergency Rate (ER) metric is also reported for the shopping task. 
