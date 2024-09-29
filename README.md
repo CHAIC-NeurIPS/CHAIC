@@ -484,22 +484,22 @@ The table below is the quantitative results on CHAIC benchmark. We report the av
     </tr>
     <tr>
         <td>Random</td>
-        <td>956.7</td>
+        <td>0.32</td>
     </tr>
     <tr>
         <td>RHP</td>
-        <td><b>887.5</b></td>
+        <td><b>0.30</b></td>
     </tr>
     <tr>
         <td>VLM</td>
-        <td>2030.7</td>
+        <td>0.68</td>
     </tr>
     <tr>
         <td>LLM+BM</td>
-        <td>1288.8</td>
+        <td>0.43</td>
     </tr>
     <tr>
         <td>Oracle</td>
-        <td>445.6</td>
+        <td>0.15</td>
     </tr>
 </table>

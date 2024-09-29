@@ -304,12 +304,11 @@ class Challenge:
         avg_finish = total_finish / num_eval_episodes
         avg_frames = total_frames / num_eval_episodes
         if len(agents) == 3:
-            avg_runaway = total_runaway / num_eval_episodes
             results = {
                 "episode_results": results,
                 "avg_finish": avg_finish,
                 "avg_frames": avg_frames,
-                "avg_runaway": avg_runaway
+                "avg_emergency_rate": total_runaway / total_frames
             }
         else:
             results = {
