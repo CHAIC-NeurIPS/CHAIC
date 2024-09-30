@@ -141,7 +141,7 @@ You should change the second items of the 'agents' argument, which represents th
 
 ## 🏆 Results
 
-The table below is the quantitative results on CHAIC benchmark. We report the average Transport Rate (TR), Efficiency Improvement (EI), Goal Inference Accuracy (IA), Completion Ratio of Helper (CR) and Standard Deviation of Transport Rate (STD_TR) here. w/o means the main agent does the task solely without a helper. The Emergency Rate (ER) metric is also reported for the shopping task. 
+The table below is the quantitative results on CHAIC benchmark. We report the average Transport Rate (TR), Efficiency Improvement (EI), Goal Inference Accuracy (IA), Completion Ratio of Helper (CR) and Standard Error of Transport Rate (STD_TR) here. w/o means the main agent does the task solely without a helper. The Emergency Rate (ER) metric is also reported for the shopping task. 
 
 <table>
     <tr>
@@ -164,10 +164,10 @@ The table below is the quantitative results on CHAIC benchmark. We report the av
         <td>w/o</td>
         <td>0.53</td>
         <td>0.30</td>
-        <td>0.38</td>
-        <td>0.27</td>
+        <td>0.37</td>
+        <td>0.28</td>
         <td>0.51</td>
-        <td>0.08</td>
+        <td>0.07</td>
         <td>0.37</td>
         <td>0.17</td>
     </tr>
@@ -175,23 +175,23 @@ The table below is the quantitative results on CHAIC benchmark. We report the av
         <td>Random</td>
         <td>0.52(-0.02)</td>
         <td>0.27(-0.05)</td>
-        <td>0.34(-0.05)</td>
+        <td>0.36(0.00)</td>
         <td>0.33(0.10)</td>
-        <td>0.51(0.00)</td>
-        <td>0.21(0.86)</td>
+        <td>0.50(-0.01)</td>
+        <td>0.21(0.56)</td>
         <td>0.39(0.05)</td>
-        <td>0.48(0.67)</td>
+        <td>0.48(0.68)</td>
     </tr>
     <tr>
         <td>RHP</td>
-        <td>0.63(0.15)</td>
-        <td>0.35(0.10)</td>
-        <td>0.44(0.18)</td>
-        <td><b>0.35</b>(0.17)</td>
+        <td>0.64(0.15)</td>
+        <td>0.35(0.11)</td>
+        <td>0.45(0.19)</td>
+        <td>0.35(0.18)</td>
         <td>0.66(0.23)</td>
         <td><b>0.44</b>(0.77)</td>
         <td>0.49(0.22)</td>
-        <td>0.64(0.72)</td>
+        <td>0.65(0.72)</td>
     </tr>
     <tr>
         <td>RL</td>
@@ -217,36 +217,36 @@ The table below is the quantitative results on CHAIC benchmark. We report the av
     </tr>
     <tr>
         <td>VLM</td>
-        <td>0.65(0.16)</td>
-        <td>0.32(0.04)</td>
-        <td>0.37(-0.01)</td>
-        <td>0.20(-0.46)</td>
-        <td>0.68(0.24)</td>
-        <td><b>0.44(0.86)</b></td>
-        <td>0.49(0.20)</td>
-        <td><b>0.69(0.76)</b></td>
+        <td>0.63(0.14)</td>
+        <td>0.33(0.06)</td>
+        <td>0.43(0.12)</td>
+        <td>0.26(-0.20)</td>
+        <td>0.69(0.26)</td>
+        <td>0.40(0.86)</td>
+        <td>0.50(0.25)</td>
+        <td><b>0.70(0.78)</b></td>
     </tr>
     <tr>
         <td>LLM+BM</td>
-        <td><b>0.66(0.18)</b></td>
-        <td><b>0.38(0.11)</b></td>
-        <td><b>0.46(0.17)</b></td>
-        <td><b>0.35(0.18)</b></td>
-        <td><b>0.70(0.26)</b></td>
-        <td>0.40(0.80)</td>
-        <td><b>0.60(0.36)</b></td>
-        <td>0.67(0.73)</td>
+        <td><b>0.65(0.17)</b></td>
+        <td><b>0.38(0.19)</b></td>
+        <td><b>0.49(0.24)</b></td>
+        <td><b>0.36(0.23)</b></td>
+        <td><b>0.70(0.27)</b></td>
+        <td>0.42(<b>0.89</b>)</td>
+        <td><b>0.58(0.33)</b></td>
+        <td>0.69(0.77)</td>
     </tr>
     <tr>
         <td>Oracle</td>
-        <td>0.78(0.32)</td>
-        <td>0.49(0.28)</td>
-        <td>0.72(0.48)</td>
-        <td>0.62(0.55)</td>
-        <td>0.84(0.39)</td>
-        <td>0.59(0.88)</td>
-        <td>0.62(0.40)</td>
-        <td>0.70(0.77)</td>
+        <td>0.77(0.31)</td>
+        <td>0.49(0.37)</td>
+        <td>0.69(0.47)</td>
+        <td>0.61(0.56)</td>
+        <td>0.82(0.38)</td>
+        <td>0.60(0.87)</td>
+        <td>0.61(0.39)</td>
+        <td>0.76(0.80)</td>
     </tr>
 </table>
 <table>
@@ -269,7 +269,7 @@ The table below is the quantitative results on CHAIC benchmark. We report the av
         <td>Random</td>
         <td>0.24</td>
         <td>0.29</td>
-        <td>0.17</td>
+        <td>0.25</td>
         <td>0.14</td>
         <td>0.31</td>
         <td>0.24</td>
@@ -279,7 +279,7 @@ The table below is the quantitative results on CHAIC benchmark. We report the av
         <td>RHP</td>
         <td>0.15</td>
         <td>0.29</td>
-        <td>0.20</td>
+        <td>0.21</td>
         <td>0.21</td>
         <td>0.28</td>
         <td>0.17</td>
@@ -287,33 +287,33 @@ The table below is the quantitative results on CHAIC benchmark. We report the av
     </tr>
     <tr>
         <td>VLM</td>
-        <td>0.20</td>
-        <td>0.00</td>
-        <td>0.20</td>
-        <td>0.20</td>
-        <td><b>0.44</b></td>
-        <td><b>0.59</b></td>
-        <td>0.59</td>
+        <td>0.24</td>
+        <td><b>0.32</b></td>
+        <td><b>0.40</b></td>
+        <td>0.33</td>
+        <td><b>0.46</b></td>
+        <td>0.35</td>
+        <td>0.72</td>
     </tr>
     <tr>
         <td>LLM+BM</td>
-        <td><b>0.27</b></td>
-        <td><b>0.33</b></td>
-        <td><b>0.28</b></td>
-        <td><b>0.33</b></td>
-        <td>0.40</td>
-        <td>0.38</td>
-        <td><b>0.70</b></td>
+        <td><b>0.25</b></td>
+        <td>0.29</td>
+        <td>0.30</td>
+        <td><b>0.35</b></td>
+        <td>0.43</td>
+        <td><b>0.47</b></td>
+        <td><b>0.74</b></td>
     </tr>
     <tr>
         <td>Oracle</td>
-        <td>0.87</td>
-        <td>0.91</td>
-        <td>0.89</td>
-        <td>0.90</td>
         <td>0.88</td>
+        <td>0.91</td>
+        <td>0.91</td>
+        <td>0.90</td>
+        <td>0.91</td>
         <td>0.82</td>
-        <td>0.89</td>
+        <td>0.87</td>
     </tr>
 </table>
 <table>
@@ -335,9 +335,9 @@ The table below is the quantitative results on CHAIC benchmark. We report the av
     </tr>
     <tr>
         <td>Random</td>
-        <td>0.08</td>
+        <td>0.09</td>
         <td>0.10</td>
-        <td>0.07</td>
+        <td>0.12</td>
         <td>0.06</td>
         <td>0.09</td>
         <td>0.09</td>
@@ -347,46 +347,46 @@ The table below is the quantitative results on CHAIC benchmark. We report the av
     <tr>
         <td>RHP</td>
         <td>0.15</td>
-        <td><b>0.42</b></td>
-        <td><b>0.26</b></td>
+        <td><b>0.43</b></td>
+        <td>0.29</td>
         <td><b>0.39</b></td>
-        <td>0.35</td>
+        <td>0.36</td>
         <td>0.19</td>
-        <td>0.33</td>
+        <td>0.34</td>
         <td>0.74</td>
     </tr>
     <tr>
         <td>VLM</td>
-        <td>0.11</td>
-        <td>0.00</td>
-        <td>0.23</td>
-        <td>0.05</td>
-        <td><b>0.40</b></td>
-        <td>0.15</td>
-        <td>0.32</td>
-        <td><b>0.81</b></td>
+        <td>0.13</td>
+        <td>0.08</td>
+        <td><b>0.34</b></td>
+        <td>0.18</td>
+        <td><b>0.39</b></td>
+        <td>0.17</td>
+        <td>0.34</td>
+        <td><b>0.82</b></td>
     </tr>
     <tr>
         <td>LLM+BM</td>
-        <td><b>0.23</b></td>
-        <td>0.32</td>
-        <td>0.25</td>
-        <td>0.38</td>
+        <td><b>0.22</b></td>
+        <td>0.30</td>
+        <td>0.30</td>
         <td>0.35</td>
-        <td><b>0.43</b></td>
-        <td><b>0.42</b></td>
-        <td>0.73</td>
+        <td>0.38</td>
+        <td><b>0.45</b></td>
+        <td><b>0.46</b></td>
+        <td>0.78</td>
     </tr>
     <tr>
         <td>Oracle</td>
-        <td>0.50</td>
-        <td>0.67</td>
+        <td>0.51</td>
+        <td>0.64</td>
         <td>0.66</td>
-        <td>0.69</td>
-        <td>0.55</td>
-        <td>0.36</td>
-        <td>0.46</td>
-        <td>0.86</td>
+        <td>0.73</td>
+        <td>0.59</td>
+        <td>0.38</td>
+        <td>0.45</td>
+        <td>0.77</td>
     </tr>
 </table>
 <table>
@@ -408,69 +408,69 @@ The table below is the quantitative results on CHAIC benchmark. We report the av
     </tr>
     <tr>
         <td>w/o</td>
-        <td>0.17</td>
-        <td>0.10</td>
-        <td>0.07</td>
-        <td>0.06</td>
-        <td>0.18</td>
-        <td>0.20</td>
-        <td>0.11</td>
-        <td>0.18</td>
+        <td>0.03</td>
+        <td>0.02</td>
+        <td>0.03</td>
+        <td>0.05</td>
+        <td>0.03</td>
+        <td>0.04</td>
+        <td>0.02</td>
+        <td>0.04</td>
     </tr>
     <tr>
         <td>Random</td>
-        <td>0.19</td>
-        <td>0.14</td>
-        <td>0.16</td>
-        <td>0.20</td>
-        <td>0.19</td>
-        <td>0.21</td>
-        <td>0.11</td>
-        <td>0.27</td>
+        <td>0.04</td>
+        <td>0.03</td>
+        <td>0.03</td>
+        <td>0.04</td>
+        <td>0.04</td>
+        <td>0.04</td>
+        <td>0.02</td>
+        <td>0.05</td>
     </tr>
     <tr>
         <td>RHP</td>
-        <td>0.11</td>
-        <td>0.18</td>
-        <td>0.15</td>
-        <td>0.22</td>
-        <td>0.13</td>
-        <td>0.19</td>
-        <td>0.15</td>
-        <td>0.22</td>
+        <td>0.02</td>
+        <td>0.04</td>
+        <td>0.03</td>
+        <td>0.05</td>
+        <td>0.03</td>
+        <td>0.04</td>
+        <td>0.02</td>
+        <td>0.04</td>
     </tr>
     <tr>
         <td>VLM</td>
-        <td>0.16</td>
-        <td>0.09</td>
-        <td>0.12</td>
-        <td>0.24</td>
-        <td>0.12</td>
-        <td>0.13</td>
-        <td>0.15</td>
-        <td>0.25</td>
+        <td>0.03</td>
+        <td>0.02</td>
+        <td>0.04</td>
+        <td>0.05</td>
+        <td>0.02</td>
+        <td>0.03</td>
+        <td>0.03</td>
+        <td>0.05</td>
     </tr>
     <tr>
         <td>LLM+BM</td>
-        <td>0.14</td>
-        <td>0.16</td>
-        <td>0.18</td>
-        <td>0.15</td>
-        <td>0.09</td>
-        <td>0.23</td>
-        <td>0.19</td>
-        <td>0.28</td>
+        <td>0.03</td>
+        <td>0.03</td>
+        <td>0.03</td>
+        <td>0.04</td>
+        <td>0.03</td>
+        <td>0.05</td>
+        <td>0.03</td>
+        <td>0.05</td>
     </tr>
     <tr>
         <td>Oracle</td>
-        <td>0.15</td>
-        <td>0.18</td>
-        <td>0.10</td>
-        <td>0.21</td>
-        <td>0.14</td>
-        <td>0.19</td>
-        <td>0.13</td>
-        <td>0.23</td>
+        <td>0.03</td>
+        <td>0.04</td>
+        <td>0.03</td>
+        <td>0.04</td>
+        <td>0.03</td>
+        <td>0.03</td>
+        <td>0.03</td>
+        <td>0.04</td>
     </tr>
 </table>
 <table>
@@ -492,14 +492,14 @@ The table below is the quantitative results on CHAIC benchmark. We report the av
     </tr>
     <tr>
         <td>VLM</td>
-        <td>0.68</td>
+        <td>0.39</td>
     </tr>
     <tr>
         <td>LLM+BM</td>
-        <td>0.43</td>
+        <td>0.38</td>
     </tr>
     <tr>
         <td>Oracle</td>
-        <td>0.15</td>
+        <td>0.17</td>
     </tr>
 </table>
